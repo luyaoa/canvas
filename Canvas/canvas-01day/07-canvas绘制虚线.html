@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制虚线</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+            canvas.width = 600;
+            canvas.height = 300;
+            canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+
+
+
+
+            context.moveTo(100,80);
+            context.lineTo(500,80);
+
+      // 虚线   context.setLineDash() 传入的是一个数组（数组里面元素的奇偶）
+    //   它 区分奇偶数  奇数 会将奇数复制
+    // context.setLineDash([5,10]);   第一个数是线长 第二个是空长
+    context.setLineDash([20,40,60]);
+
+
+
+
+            context.stroke();
+    
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制直线</title>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+
+
+
+
+        // 绘制矩形的三种方法
+
+        // 一绘制矩形
+        // context.rect(x轴,Y轴,宽,高);  图像显示用stroke fill
+        // context.rect(100, 100, 200, 100);
+        // context.strokeStyle = 'red';
+        // context.stroke();
+
+
+
+        // 二
+    
+        // context.strokeRect(150, 150, 300, 100);
+       
+        // 三
+        context.fillRect(50, 50, 300, 200);
+        // 清除矩形
+        // context.clearRect(x轴,Y轴,宽,高);
+        context.clearRect(100, 100, 100, 100);  //在该区域下创建透明矩形 不能填充颜色 他不是一个矩形只是抠掉的部分
+        
+    </script>
+</body>
+
+</html>

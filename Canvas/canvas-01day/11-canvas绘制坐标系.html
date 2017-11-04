@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制坐标系</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+            canvas.width = 600;
+            canvas.height = 300;
+            canvas.style.border = '1px solid pink';
+        var context = canvas.getContext('2d');
+        
+        // 步骤:
+        //    1.确定坐标轴的原点
+        var space = 20;
+        var zX = space;
+        var zY = canvas.height - space;
+        //    2.确定小箭头的大小
+        var aWidth = 10;
+        //    3.画X轴
+        context.moveTo(zX, zY);
+        context.lineTo(canvas.width - space , zY);
+        // 箭头
+        context.lineTo(canvas.width - space - aWidth ,canvas.height -space + aWidth / 2  );
+        context.lineTo(canvas.width - space - aWidth ,canvas.height -space - aWidth / 2 )
+        context.lineTo(canvas.width - space , zY);
+        context.fill();
+
+        //    4.画Y轴
+        context.moveTo(zX ,zY);
+        context.lineTo(zX , space);
+        // 箭头
+        context.lineTo(space + aWidth / 2 ,space + aWidth  );
+        context.lineTo(space - aWidth / 2 , space + aWidth );
+        context.lineTo(zX , space);
+        context.fill()
+
+
+        context.stroke();
+
+
+
+
+
+        
+    </script>
+</body>
+</html>

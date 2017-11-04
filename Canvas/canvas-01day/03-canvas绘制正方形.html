@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制正方形并填充</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+
+            canvas.width = 600;
+            canvas.height = 300;
+            canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+
+             context.moveTo(10,10);
+             context.lineTo(200,10);
+             context.lineTo(200,200);
+             context.lineTo(10,200);
+             context.lineTo(10,10);
+            
+    // context.stroke();
+        // 填充 fillstyle
+        context.fillStyle ='pink';
+
+        context.fill();
+
+
+
+
+
+    </script>
+</body>
+</html>

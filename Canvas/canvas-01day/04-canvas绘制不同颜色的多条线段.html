@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制不同颜色的多条线段</title>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = '1px solid pink';
+
+        var context = canvas.getContext('2d');
+
+        // 第一条直线
+        context.beginPath();
+        context.height = 2;
+        context.moveTo(100, 50);
+        context.lineTo(200, 50);
+        context.strokeStyle = 'red';
+        context.stroke();
+
+        // 第二条直线
+        // context.beginPath();
+        context.height = 2;
+        context.moveTo(100, 100);
+        context.lineTo(200, 100);
+        context.strokeStyle = 'blue';
+        context.stroke();
+        // 第二条直线
+        // context.beginPath();
+        context.height = 2;
+        context.moveTo(100, 150);
+        context.lineTo(200, 150);
+        context.strokeStyle = 'yellow';
+
+
+        context.stroke();
+
+        // 绘制图形是基于状态的
+        // 当线条设置不同颜色的时候 如果没有设置线宽 就会出现徐然错误
+        //  要解决  1.设置线宽至少为2
+        //          2. 统一使用一个stroke()  再设置颜色就会被覆盖  
+        
+        // 总结：如果只写一个stroke 再开启一个新路径话 就只有一条线 应该是
+    </script>
+</body>
+
+</html>

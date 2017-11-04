@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绘制n等分圆</title>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+          var canvas = document.querySelector('canvas');
+            canvas.width = 600;
+            canvas.height = 400;
+            canvas.style.border = '1px solid pink';
+        var context = this.canvas.getContext('2d');
+
+           // 划横线
+           context.beginPath();
+        context.moveTo(0,canvas.height / 2);
+        context.lineTo(canvas.width,canvas.height / 2);
+        context.stroke();
+        
+        // 画竖线
+        context.beginPath();
+        context.moveTo(canvas.width / 2,0);
+        context.lineTo(canvas.width / 2 ,canvas.height);
+        context.stroke();
+
+
+        // 获取随机颜色
+        function color(){
+            var a = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            var c = Math.floor(Math.random()*256);
+
+            return 'rgb('+a+','+b+','+c+')';
+        }
+        // console.log(color());
+        var n = 180;
+        // 定时器
+        setInterval(function(){
+            var start = 0; //开始度数
+            for(var i=0;i<n;i++){
+                context.beginPath();
+                context.moveTo(canvas.width/2,canvas.height/2);
+                context.arc(canvas.width/2,canvas.height/2,150,start,start+2*Math.PI/n);
+                context.closePath();
+                context.fillStyle = color();
+                context.fill();
+                start = start + 2*Math.PI/n;
+            }
+        },1000)
+        
+
+
+    </script>
+</body>
+</html>

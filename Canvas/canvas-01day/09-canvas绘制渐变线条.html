@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制渐变线条</title>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+        // 每一个线段都要重新开始一次否则会被最后一个颜色覆盖所有都成立一个颜色
+        // 线宽
+        context.lineWidth = 6;
+        for (var i = 0; i < 256; i++) {
+            // 设定为一像素的线段 每一像素一个颜色所以+i
+            context.beginPath();
+            context.moveTo(10 + i, 100);
+            context.lineTo(100 + i, 100);
+            context.strokeStyle = 'rgb(255,' + i + ',' + i + ')';
+            context.stroke();
+
+        }
+    </script>
+</body>
+
+</html>

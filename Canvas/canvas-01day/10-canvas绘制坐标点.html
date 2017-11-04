@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制坐标点</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+            canvas.width = 600;
+            canvas.height = 300;
+            canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+
+
+        // 功能 制作坐标点 （数据小方块）
+        // 步骤：
+            // 1.确定小方块的大小（squareWidth）  宽高10像素
+            var sWidth = 10;
+            // 2.模拟一个假数据data(小方块中心的位置坐标)
+            var data = {
+                x:320,
+                y:240
+            }
+            // 3.计算小方块的四个角位置
+            // var edge = 10;
+            context.moveTo(data.x - sWidth / 2, data.y - sWidth / 2);
+            context.lineTo(data.x + sWidth / 2, data.y - sWidth / 2);
+            context.lineTo(data.x + sWidth / 2, data.y + sWidth / 2);
+            context.lineTo(data.x - sWidth / 2, data.y + sWidth / 2);
+            context.closePath();
+            context.fill();
+
+            
+    
+    </script>
+</body>
+</html>

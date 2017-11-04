@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制折线图</title>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <canvas></canvas>
+    <script>
+        // 思路 绘制坐标系 绘制小方块 多个小方块 连线
+
+
+        // 1.获取元素
+        var data = [{
+                x: 100,
+                y: 100
+            },
+            {
+                x: 200,
+                y: 120
+            },
+            {
+                x: 300,
+                y: 180
+            },
+            {
+                x: 400,
+                y: 300
+            },
+            {
+                x: 500,
+                y: 140
+            }
+        ]
+        // 2.构建构造函数
+        var LineChart = function () {
+            // 2.1 画布大小 画笔  原点 坐标箭头 小方块大小  间隙大小
+            this.canvas = document.querySelector('canvas');
+
+            this.canvas.width = 600;
+            this.canvas.height = 400;
+            this.canvas.style.border = '1px solid pink';
+            this.context = this.canvas.getContext('2d');
+
+            this.width = this.canvas.width;
+            this.height = this.canvas.height;
+
+            this.space = 20;
+            this.zX = this.space;
+            this.zY = this.height - this.space;
+            this.arrow = 10;
+            this.square = 8;
+        }
+
+        // 3.添加坐标系
+        LineChart.prototype.drawAxis = function () {
+            // X轴
+            this.context.beginPath();
+            this.context.moveTo(this.zX, this.zY);
+            this.context.lineTo(this.width - this.space, this.zY);
+            // 箭头
+            this.context.lineTo(this.width - this.space - this.arrow, this.height - this.space + this.arrow / 2);
+            this.context.lineTo(this.width - this.space - this.arrow, this.height - this.space - this.arrow / 2);
+            this.context.lineTo(this.width - this.space, this.zY);
+
+            this.context.stroke();
+            this.context.fill();
+
+            // Y轴
+            this.context.beginPath();
+            this.context.moveTo(this.zX, this.zY);
+
+            this.context.lineTo(this.zX, this.space);
+            this.context.lineTo(this.space - this.arrow / 2, this.space + this.arrow);
+            this.context.lineTo(this.space + this.arrow / 2, this.space + this.arrow);
+            this.context.lineTo(this.zX, this.space);
+
+            this.context.stroke();
+            this.context.fill();
+
+        }
+        // 4.绘制小方块
+        LineChart.prototype.drawSquare = function (data) {
+            this.context.beginPath();
+            this.context.moveTo(data.x - this.square / 2, data.y - this.square / 2);
+            this.context.fillRect(data.x - this.square / 2, data.y - this.square / 2,this.square,this.square);
+
+        }
+
+
+        // 5.坐标转换
+
+        LineChart.prototype.transfrom = function(data){
+            var that = this;
+            var canvasData = [];
+            data.forEach(function(item,i){
+                canvasData.push({
+                    x:that.zX + item.x,
+                    y: that.zY - item.y
+                })
+            })
+            return canvasData;
+        }
+        // 6.多个小方块（数据）
+        LineChart.prototype.drawDots = function(data){
+            var that = this;
+            var canvasData = this.transfrom(data);
+                canvasData.forEach(function(item,i){
+                    that.drawSquare(item);
+
+                    if(i == 0) {
+                        that.drawLine(that.zeroX,that.zeroY,item.x,item.y);
+                      }else {
+                        that.drawLine(canvasData[i-1].x,canvasData[i-1].y,item.x,item.y);
+                      }
+              
+                })
+            }
+       
+        // 7.连线
+        LineChart.prototype.drawLine = function (startX, startY, endX, endY) {
+            this.context.beginPath();
+            this.context.moveTo(startX, startY);
+            this.context.lineTo(endX, endY);
+            this.context.stroke();
+        }
+        LineChart.prototype.init = function () {
+            this.drawAxis();
+
+            this.drawDots(data);
+
+        }
+        new LineChart().init();
+    </script>
+</body>
+
+</html>

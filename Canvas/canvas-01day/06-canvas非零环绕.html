@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 非零环绕</title>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        //  获取元素
+        var canvas = document.querySelector('canvas');
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = '2px solid pink';
+
+        var context = canvas.getContext('2d');
+
+
+
+
+        // 第一个长方形
+        context.moveTo(100, 50);
+        context.lineTo(500, 50);
+        context.lineTo(500, 250);
+        context.lineTo(100, 250);
+        context.closePath();
+        context.fillStyle = 'hotpink';
+        context.fill();
+
+        // // 非零   就是与第一个矩形描绘顺序相同
+        // context.moveTo(200, 100);
+        // context.lineTo(400, 100);
+        // context.lineTo(400, 200);
+        // context.lineTo(200, 200);
+        // context.closePath();
+
+        //这是零   就是与第一个矩形描绘顺序相反
+        context.beginPath();
+        context.moveTo(200, 100);
+        context.lineTo(200, 200);
+        context.lineTo(400, 200);
+        context.lineTo(400, 100);
+        context.closePath();
+        context.fillStyle = 'pink';
+
+        context.fill();
+
+
+
+    </script>
+</body>
+
+</html>
